@@ -1,5 +1,13 @@
+import AppNavbar from './components/Navbar';
+
 function App() {
-  return <h1 className="text-5xl">Hello</h1>;
+  return (
+    <>
+      <div className="container mx-auto px-7 py-6 max-w-full lg:mt-12 lg:w-[65rem]">
+        <AppNavbar />
+      </div>
+    </>
+  );
 }
 
 export default App;
