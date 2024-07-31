@@ -5,8 +5,8 @@ import TextContainer from './Text/TextContainer';
 import FileContainer from './File/FileContainer';
 import { useEffect, useState } from 'react';
 
-function WorkingContainer() {
-  const [selectedOption, setSelectedOption] = useState('TextContainer');
+function WorkingContainer({ appSeletedOption, setSelection }) {
+  //   const [selectedOption, setSelectedOption] = useState(setSelection);
 
   const [textOptionColor, setTextOptionColor] = useState('text-gray-500');
 
@@ -17,10 +17,10 @@ function WorkingContainer() {
   const [fileOptionBgColor, setFileOptionBgColor] = useState('bg-bodyBgLight');
 
   useEffect(() => {
-    if (selectedOption === 'TextContainer') {
+    if (appSeletedOption === 'TextContainer') {
       setTextOptionColor('text-themeColor');
       setTextOptionBgColor('bg-white');
-    } else if (selectedOption === 'FileContainer') {
+    } else if (appSeletedOption === 'FileContainer') {
       setFileOptionColor('text-themeColor');
       setFileOptionBgColor('bg-white');
     }
@@ -30,7 +30,7 @@ function WorkingContainer() {
       setFileOptionColor('text-gray-500');
       setFileOptionBgColor('bg-bodyBgLight');
     };
-  }, [selectedOption]);
+  }, [appSeletedOption]);
 
   return (
     <>
@@ -44,23 +44,27 @@ function WorkingContainer() {
           <div className={`p-3 ${textOptionBgColor}`}>
             <PiTextAlignLeftLight
               onClick={() => {
-                setSelectedOption('TextContainer');
+                {
+                  setSelection('TextContainer');
+                  //   setSelectedOption(setSelection);
+                }
               }}
               className={`w-10 h-16 font-bold ${textOptionColor}`}
             />
           </div>
+
           <div className={`p-3 ${fileOptionBgColor}`}>
             <MdOutlineFileCopy
               onClick={() => {
-                setSelectedOption('FileContainer');
+                setSelection('FileContainer');
+                // setSelectedOption(setSelection);
               }}
               className={`w-10 h-16 font-bold ${fileOptionColor}`}
             />
           </div>
         </div>
-
         {/* Text Option */}
-        {selectedOption === 'TextContainer' ? (
+        {appSeletedOption === 'TextContainer' ? (
           <TextContainer />
         ) : (
           <FileContainer />
