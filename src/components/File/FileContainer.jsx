@@ -4,9 +4,9 @@ function FileContainer() {
   return (
     <>
       {/* Input container */}
-      <div className="h-[347px] p-5 border border-black flex flex-col space-y-7 w-full md:h-[436.8px] md:p-10">
+      <div className="h-[347px] p-5  flex flex-col space-y-7 w-full md:h-[434px] md:p-10">
         <h1 className="hidden text-5xl font-bold tracking-wider md:block">
-          File
+          Files
         </h1>
         <div className="h-full">
           <MyDropzone />

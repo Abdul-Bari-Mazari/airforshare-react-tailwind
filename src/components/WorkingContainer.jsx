@@ -36,29 +36,33 @@ function WorkingContainer({ appSeletedOption, setSelection }) {
     <>
       <div
         className=" bg-boxLight shadow-xl mt-0 flex justify-center items-start 
-    border border-r-red-600  max-h-full md:mt-10
+    max-h-full md:mt-10
     "
       >
         {/* Sidebar */}
         <div className="hidden flex-col items-center justify-start h-full bg-bodyBgLight  md:flex">
-          <div className={`p-3 ${textOptionBgColor}`}>
+          <div
+            onClick={() => {
+              {
+                setSelection('TextContainer');
+                //   setSelectedOption(setSelection);
+              }
+            }}
+            className={`cursor-pointer p-3 ${textOptionBgColor}`}
+          >
             <PiTextAlignLeftLight
-              onClick={() => {
-                {
-                  setSelection('TextContainer');
-                  //   setSelectedOption(setSelection);
-                }
-              }}
               className={`w-10 h-16 font-bold ${textOptionColor}`}
             />
           </div>
 
-          <div className={`p-3 ${fileOptionBgColor}`}>
+          <div
+            onClick={() => {
+              setSelection('FileContainer');
+              // setSelectedOption(setSelection);
+            }}
+            className={`cursor-pointer p-3 ${fileOptionBgColor}`}
+          >
             <MdOutlineFileCopy
-              onClick={() => {
-                setSelection('FileContainer');
-                // setSelectedOption(setSelection);
-              }}
               className={`w-10 h-16 font-bold ${fileOptionColor}`}
             />
           </div>
