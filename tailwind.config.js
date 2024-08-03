@@ -9,10 +9,12 @@ export default {
         themeColor: 'rgb(99, 142, 255)',
         thinTextLight: 'rgb(155, 155, 155)',
         boxLight: 'white',
+        fileNameTextLight: '#4a4a4a',
         // Darkmode colors
         bodyBgDark: '#363636',
         navLinksDark: '#e9e9e9',
         boxDark: '#2d2d2d',
+        darkText: 'black',
       },
     },
   },

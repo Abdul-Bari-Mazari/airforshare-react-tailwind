@@ -1,16 +1,6 @@
-import React, { useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-function MyDropzone() {
-  // useEffect(() => {
-  //     const handleSize= () => {
-  //         if (dbod)
-  //     }
-  // })
-
-  const onDrop = useCallback((acceptedFiles) => {
-    console.log('acceptedFiles', acceptedFiles);
-  }, []);
+function MyDropzone({ text, onDrop }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
@@ -22,9 +12,7 @@ function MyDropzone() {
       {isDragActive ? (
         <p>Drop the files here ...</p>
       ) : (
-        <p className="text-center text-thinTextLight">
-          Drag and drop some files here, or click to select files
-        </p>
+        <p className="text-center text-thinTextLight">{text}</p>
       )}
     </div>
   );

@@ -8,6 +8,6 @@ body {
 
 @layer components {
   .textareaStyles {
-    @apply text-2xl flex-1 min-h-48 placeholder:text-thinTextLight placeholder:font-thin outline-none overflow-hidden resize-none md:placeholder:text-2xl;
+    @apply text-lg flex-1 min-h-48 placeholder:text-lg placeholder:text-thinTextLight placeholder:font-thin outline-none overflow-hidden resize-none md:text-2xl md:placeholder:text-2xl;
   }
 }

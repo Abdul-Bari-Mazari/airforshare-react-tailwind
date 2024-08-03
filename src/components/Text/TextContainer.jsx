@@ -1,11 +1,13 @@
 import TextButton from './TextButton';
 import { database, ref, set, onValue, remove } from '../../config/firebase';
 import { useEffect, useState } from 'react';
-import ClearText from '../File/Clear';
+import ClearText from './Clear';
+import LOADER from '../../assets/loader/loader.gif';
 
 function TextContainer() {
   const [textValue, setTextValue] = useState('');
   const [isText, setIsText] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   const autoGrowTextArea = (e) => {
     e.style.height = '5px';
@@ -20,8 +22,9 @@ function TextContainer() {
   }
 
   useEffect(() => {
-    const starCountRef = ref(database, 'text');
-    onValue(starCountRef, (snapshot) => {
+    setLoader(true);
+    const textRef = ref(database, 'text');
+    onValue(textRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
         setTextValue(data.text);
@@ -29,11 +32,12 @@ function TextContainer() {
           setIsText(true);
         }
       }
+      setLoader(false);
     });
   }, []);
 
-  function clearText() {
-    remove(ref(database));
+  async function clearText() {
+    await remove(ref(database, 'text'));
     setTextValue('');
     setIsText(false);
   }
@@ -41,12 +45,20 @@ function TextContainer() {
   return (
     <>
       {/* Input container */}
-      <div className="p-5 flex flex-col space-y-7 w-full h-full md:p-10">
+      <div className="relative p-5 flex flex-col space-y-7 w-full h-full md:p-10">
         <h1 className="hidden text-5xl font-bold tracking-wider md:block">
           Text
         </h1>
-
-        <div className="flex h-full">
+        {loader === true && (
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <img
+              width={30}
+              src={LOADER}
+              alt=""
+            />
+          </div>
+        )}
+        <div className={`flex h-full `}>
           <textarea
             value={textValue}
             onChange={(e) => {
@@ -54,7 +66,7 @@ function TextContainer() {
               setIsText(false);
             }}
             onInput={() => autoGrowTextArea(event.target)}
-            className="textareaStyles"
+            className="textareaStyles "
             placeholder="Type something..."
           ></textarea>
         </div>
