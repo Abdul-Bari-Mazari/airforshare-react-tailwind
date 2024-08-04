@@ -2,7 +2,7 @@ import TextButton from './TextButton';
 import { database, ref, set, onValue, remove } from '../../config/firebase';
 import { useEffect, useState } from 'react';
 import ClearText from './Clear';
-import LOADER from '../../assets/loader/loader.gif';
+import { MoonLoader } from 'react-spinners';
 
 function TextContainer() {
   const [textValue, setTextValue] = useState('');
@@ -51,10 +51,9 @@ function TextContainer() {
         </h1>
         {loader === true && (
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <img
-              width={30}
-              src={LOADER}
-              alt=""
+            <MoonLoader
+              color="#264ec0"
+              size={35}
             />
           </div>
         )}

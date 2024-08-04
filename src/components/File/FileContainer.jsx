@@ -17,7 +17,9 @@ import {
   deleteObject,
   listAll,
 } from '../../config/firebase';
-import LOADER from '../../assets/loader/loader.gif';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
+import { MoonLoader } from 'react-spinners';
 
 function FileContainer() {
   const [files, setFiles] = useState([]);
@@ -98,6 +100,32 @@ function FileContainer() {
     });
   };
 
+  // Download all files as zip
+  const downloadAll = () => {
+    setLoading(true);
+    let filename = 'All-Files';
+    const zip = new JSZip();
+    const folder = zip.folder('project');
+    files.forEach((file) => {
+      const blobPromise = fetch(file.url).then(function (response) {
+        console.log({ response });
+        if (response.status === 200 || response.status === 0) {
+          setLoading(false);
+          return Promise.resolve(response.blob());
+        } else {
+          return Promise.reject(new Error(response.statusText));
+        }
+      });
+      const name = file.name;
+      folder.file(name, blobPromise);
+    });
+
+    zip
+      .generateAsync({ type: 'blob' })
+      .then((blob) => saveAs(blob, filename))
+      .catch((e) => console.log(e));
+  };
+
   // Delete all files
   const deleteFiles = async () => {
     setDeleteLoading(true);
@@ -125,14 +153,17 @@ function FileContainer() {
     <>
       {/* Input container */}
       <div
-        className={`relative h-[347px] p-5  flex flex-col space-y-7 w-full md:h-[434px] md:p-10`}
+        className={`relative min-h-[347px] p-5  flex flex-col space-y-7 w-full md:h-[434px] md:p-10`}
       >
         <div className="flex justify-center  md:justify-between md:items-center">
           <h1 className="hidden text-5xl font-bold tracking-wider md:block">
             Files
           </h1>
           <div className="flex justify-between items-center space-x-6">
-            <div className="text-blue-600 flex gap-2 items-center justify-center cursor-pointer hover:underline active:opacity-80">
+            <div
+              className="text-blue-600 flex gap-2 items-center justify-center cursor-pointer hover:underline active:opacity-80"
+              onClick={downloadAll}
+            >
               <PiDownloadSimpleFill className="w-6 h-6" />
               <p>Download All</p>
             </div>
@@ -148,10 +179,9 @@ function FileContainer() {
 
         {loading === true || deleteLoading === true ? (
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <img
-              width={40}
-              src={LOADER}
-              alt=""
+            <MoonLoader
+              color="#264ec0"
+              size={35}
             />
           </div>
         ) : (
