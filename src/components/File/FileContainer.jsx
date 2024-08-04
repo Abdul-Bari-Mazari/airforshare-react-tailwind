@@ -153,7 +153,7 @@ function FileContainer() {
     <>
       {/* Input container */}
       <div
-        className={`relative min-h-[347px] p-5  flex flex-col space-y-7 w-full md:h-[434px] md:p-10`}
+        className={`relative h-[347px] p-5  flex flex-col space-y-7 w-full md:h-[434px] md:p-10`}
       >
         <div className="flex justify-center  md:justify-between md:items-center">
           <h1 className="hidden text-5xl font-bold tracking-wider md:block">
