@@ -2,36 +2,43 @@ import MyDropzone from '../DropZone/MyDropZone';
 import { MdOutlineInsertDriveFile } from 'react-icons/md';
 import { GoPlus } from 'react-icons/go';
 import LOADER from '../../assets/loader/loader.gif';
+import { Link } from 'react-router-dom';
 
 function FileList({ files, onDrop, tempFiles }) {
   return (
     <div className="flex flex-wrap items-center gap-2">
       {files.map((v, i) => {
         return (
-          <div>
-            {v.type.indexOf('image') !== -1 ? (
-              <img
-                key={i}
-                className="w-36 h-36 object-cover"
-                src={v.url}
-                alt=""
-              />
-            ) : (
-              <div
-                key={i}
-                className="border border-thinTextLight p-2 w-36 h-36 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-slate-100 "
-              >
-                <MdOutlineInsertDriveFile className="w-10 h-10" />
-                <p className="text-fileNameTextLight text-center text-sm">
-                  {v.name.slice(0, 7)}
-                  {v.name.slice(
-                    v.name.lastIndexOf('.') - 3,
-                    v.name.lastIndexOf('.')
-                  )}
-                  <b>{v.name.slice(v.name.lastIndexOf('.'))}</b>
-                </p>
-              </div>
-            )}
+          <div
+            key={i}
+            className="cursor-pointer"
+          >
+            <a
+              href={v.url}
+              target="_black"
+              download
+              key={i}
+            >
+              {v.type.indexOf('image') !== -1 ? (
+                <img
+                  className="w-36 h-36 object-cover"
+                  src={v.url}
+                  alt=""
+                />
+              ) : (
+                <div className="border border-thinTextLight p-2 w-36 h-36 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-slate-100 ">
+                  <MdOutlineInsertDriveFile className="w-10 h-10" />
+                  <p className="text-fileNameTextLight text-center text-sm">
+                    {v.name.slice(0, 7)}
+                    {v.name.slice(
+                      v.name.lastIndexOf('.') - 3,
+                      v.name.lastIndexOf('.')
+                    )}
+                    <b>{v.name.slice(v.name.lastIndexOf('.'))}</b>
+                  </p>
+                </div>
+              )}
+            </a>
           </div>
         );
       })}
