@@ -4,6 +4,8 @@ import LOGO_SMALL from '../assets/images/logo-small.png';
 import HAMBURGER_MENU from '../assets/images/icon-hamburger.svg';
 
 import { useEffect } from 'react';
+import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
+import NavLinks from './NavLinks/NavLinks';
 
 function AppNavbar() {
   const [navLogo, setNavLogo] = useState(LOGO_BIG);
@@ -34,22 +36,22 @@ function AppNavbar() {
           />
         </div>
         {/* Nav links */}
-        <div className="block md:hidden">
-          <img
-            src={HAMBURGER_MENU}
-            alt=""
-          />
-        </div>
+
         <div className="hidden items-center space-x-10 text-sm  md:flex">
-          <p className="text-navLinksLight dark:bg-navLinksDark">
-            How it Works
-          </p>
-          <p className="text-navLinksLight dark:bg-navLinksDark">Download</p>
-          <p className="text-navLinksLight dark:bg-navLinksDark">Upgrade</p>
-          <p className="text-navLinksLight dark:bg-navLinksDark">Feedback</p>
-          <p className="text-themeColor font-bold dark:bg-navLinksDark">
-            Login / Register
-          </p>
+          <NavLinks text="How it works" />
+          <NavLinks text="Download" />
+          <NavLinks text="Upgrade" />
+          <NavLinks text="Feedback" />
+          <NavLinks text="Login / Register" />
+        </div>
+        <div className="flex justify-center items-center gap-4">
+          <ThemeSwitch />
+          <div className="block md:hidden">
+            <img
+              src={HAMBURGER_MENU}
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </>

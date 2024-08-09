@@ -46,7 +46,7 @@ function TextContainer() {
     <>
       {/* Input container */}
       <div className="relative p-5 flex flex-col space-y-7 w-full h-full md:p-10">
-        <h1 className="hidden text-5xl font-bold tracking-wider md:block">
+        <h1 className="dark:text-darkText hidden text-5xl font-bold tracking-wider md:block">
           Text
         </h1>
         {loader === true && (
@@ -65,7 +65,7 @@ function TextContainer() {
               setIsText(false);
             }}
             onInput={() => autoGrowTextArea(event.target)}
-            className="textareaStyles "
+            className="textareaStyles dark:text-darkText  dark:bg-boxDark"
             placeholder="Type something..."
           ></textarea>
         </div>

@@ -4,6 +4,7 @@ import WorkingContainer from './components/WorkingContainer';
 import { PiTextAlignLeftLight } from 'react-icons/pi';
 import { MdOutlineFileCopy } from 'react-icons/md';
 import { useEffect, useState } from 'react';
+import { ThemeContextProvider } from './contexts/themeContext';
 
 function App() {
   const [seletedOption, setSelectedOption] = useState('TextContainer');
@@ -15,6 +16,31 @@ function App() {
   const [fileOptionColor, setFileOptionColor] = useState('text-gray-500');
 
   const [fileOptionBgColor, setFileOptionBgColor] = useState('white');
+
+  // Set theme
+
+  const [themeMode, setThemeMode] = useState('light');
+  const html = document.querySelector('html');
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) {
+      setThemeMode(storedTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    html.classList.remove('light', 'dark');
+    html.classList.add(themeMode);
+  }, [themeMode]);
+
+  const switchMode = () => {
+    const newTheme = themeMode === 'dark' ? 'light' : 'dark';
+    setThemeMode(newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
+
+  // Set theme
 
   useEffect(() => {
     if (seletedOption === 'TextContainer') {
@@ -35,21 +61,22 @@ function App() {
   const setSelection = (selection) => {
     setSelectedOption(selection);
   };
+
   return (
-    <>
+    <ThemeContextProvider value={{ themeMode, switchMode }}>
       <div className="container flex flex-col justify-between mx-auto px-4 py-6 max-w-full md:px-7 lg:mt-8 lg:w-[60rem]">
         <AppNavbar />
 
         <div className="flex justify-between items-end">
-          <h1 className=" mt-10 block mb-3 text-4xl font-bold tracking-wider text:white dark:text-black md:hidden">
+          <h1 className=" mt-10 block mb-3 text-4xl font-bold tracking-wider text:white dark:text-darkText md:hidden">
             {seletedOption === 'TextContainer' ? 'Text' : 'File'}
           </h1>
-          <div className="flex justify-center items-center md:hidden">
+          <div className="dark:bg-boxDark flex justify-center items-center md:hidden">
             <div
+              className={`px-2 py-2 dark:bg-boxDark ${textOptionBgColor}`}
               onClick={() => {
                 setSelectedOption('TextContainer');
               }}
-              className={`px-2 py-2 ${textOptionBgColor}`}
             >
               <PiTextAlignLeftLight
                 className={`w-10 h-10 ${textOptionColor}`}
@@ -59,7 +86,7 @@ function App() {
               onClick={() => {
                 setSelectedOption('FileContainer');
               }}
-              className={`px-2 py-2 ${fileOptionBgColor}`}
+              className={`px-2 py-2 dark:bg-boxDark ${fileOptionBgColor}`}
             >
               <MdOutlineFileCopy className={`w-10 h-10 ${fileOptionColor}`} />
             </div>
@@ -70,7 +97,7 @@ function App() {
           appSeletedOption={seletedOption}
         />
       </div>
-    </>
+    </ThemeContextProvider>
   );
 }
 

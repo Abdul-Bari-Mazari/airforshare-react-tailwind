@@ -14,7 +14,7 @@ export default {
         bodyBgDark: '#363636',
         navLinksDark: '#e9e9e9',
         boxDark: '#2d2d2d',
-        darkText: 'black',
+        darkText: 'white',
       },
     },
   },

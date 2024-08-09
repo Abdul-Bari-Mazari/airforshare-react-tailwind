@@ -3,7 +3,7 @@ function ClearText({ className, onClick }) {
     <>
       <p
         onClick={onClick}
-        className={`cursor-pointer px-10 ${className}`}
+        className={`cursor-pointer px-10 dark:text-darkText  ${className}`}
       >
         Clear
       </p>

@@ -156,7 +156,7 @@ function FileContainer() {
         className={`relative h-[347px] p-5  flex flex-col space-y-7 w-full md:h-[434px] md:p-10`}
       >
         <div className="flex justify-center  md:justify-between md:items-center">
-          <h1 className="hidden text-5xl font-bold tracking-wider md:block">
+          <h1 className="dark:text-darkText hidden text-5xl font-bold tracking-wider md:block">
             Files
           </h1>
           <div className="flex justify-between items-center space-x-6">
@@ -168,7 +168,7 @@ function FileContainer() {
               <p>Download All</p>
             </div>
             <div
-              className="text-red-800 flex gap-2 items-center justify-center cursor-pointer hover:underline active:opacity-80"
+              className="text-red-800 dark:text-red-500 flex gap-2 items-center justify-center cursor-pointer hover:underline active:opacity-80"
               onClick={deleteFiles}
             >
               <MdDelete className="w-5 h-5" />
