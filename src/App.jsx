@@ -1,4 +1,4 @@
-import AppNavbar from './components/Navbar';
+import AppNavbar from './components/Navbar/Navbar';
 import WorkingContainer from './components/WorkingContainer';
 // LOGO
 import { PiTextAlignLeftLight } from 'react-icons/pi';

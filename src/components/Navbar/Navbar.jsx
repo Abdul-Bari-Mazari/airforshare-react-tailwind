@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import LOGO_BIG from '../assets/images/logo-big.svg';
-import LOGO_SMALL from '../assets/images/logo-small.png';
-import HAMBURGER_MENU from '../assets/images/icon-hamburger.svg';
+import LOGO_BIG from '../Navbar/../../assets/images/logo-big.svg';
+import LOGO_SMALL from '../Navbar/../../assets/images/logo-small.png';
 
 import { useEffect } from 'react';
-import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
-import NavLinks from './NavLinks/NavLinks';
+import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
+import NavLinks from './NavLinks';
+import AppMenu from './Menu';
 
 function AppNavbar() {
   const [navLogo, setNavLogo] = useState(LOGO_BIG);
@@ -45,13 +45,10 @@ function AppNavbar() {
           <NavLinks text="Login / Register" />
         </div>
         <div className="flex justify-center items-center gap-4">
-          <ThemeSwitch />
           <div className="block md:hidden">
-            <img
-              src={HAMBURGER_MENU}
-              alt=""
-            />
+            <AppMenu className="text-black dark:text-white" />
           </div>
+          <ThemeSwitch />
         </div>
       </div>
     </>
