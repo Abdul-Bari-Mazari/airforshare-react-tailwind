@@ -6,16 +6,15 @@ import { MdOutlineFileCopy } from 'react-icons/md';
 import { useEffect, useState } from 'react';
 import { ThemeContextProvider } from './contexts/themeContext';
 
+
 function App() {
   const [seletedOption, setSelectedOption] = useState('TextContainer');
-
   const [textOptionColor, setTextOptionColor] = useState('text-gray-500');
-
   const [textOptionBgColor, setTextOptionBgColor] = useState('white');
-
   const [fileOptionColor, setFileOptionColor] = useState('text-gray-500');
-
   const [fileOptionBgColor, setFileOptionBgColor] = useState('white');
+
+  const currentYear = new Date().getFullYear();
 
   // Set theme
 
@@ -96,6 +95,11 @@ function App() {
           setSelection={setSelection}
           appSeletedOption={seletedOption}
         />
+        <footer>
+          <p className="text-center text-base text-gray-500 mt-10 mb-4">
+            &copy; {currentYear} Made with ❤️ by <a target='_blank' href='https://abdulbari-portfolio.vercel.app/'><b>Abdul Bari</b></a>. All rights reserved.
+          </p>
+        </footer>
       </div>
     </ThemeContextProvider>
   );

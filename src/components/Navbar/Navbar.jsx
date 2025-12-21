@@ -38,11 +38,6 @@ function AppNavbar() {
         {/* Nav links */}
 
         <div className="hidden items-center space-x-10 text-sm  md:flex">
-          <NavLinks text="How it works" />
-          <NavLinks text="Download" />
-          <NavLinks text="Upgrade" />
-          <NavLinks text="Feedback" />
-          <NavLinks text="Login / Register" />
         </div>
         <div className="flex justify-center items-center gap-4">
           <div className="block md:hidden">
